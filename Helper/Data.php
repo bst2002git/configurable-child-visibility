@@ -84,7 +84,7 @@ class Data extends ParentHelperData
 
             $product = $objectManager->get('Magento\Catalog\Model\Product')->load($productId);
             $stockitem = $stockRegistry->getStockItem($product->getId(), $product->getStore()->getWebsiteId());
-            if($stockitem->getQty() == 0) continue;
+            if($stockitem->getQty() == 0 || !$stockitem->getIsInStock()) continue;
 
             foreach ($allowAttributes as $attribute) {
                 $productAttribute = $attribute->getProductAttribute();
